@@ -1,4 +1,5 @@
-<div class="timer" id={{selector}}>
+{{#each this}}
+<div class="timer" id="timer-1">
     <div class="field">
         <span class="value" data-value="days">{{days}}</span>
         <span class="label">Days</span>
@@ -19,3 +20,4 @@
         <span class="label">Seconds</span>
     </div>
 </div>
+{{/each}}
