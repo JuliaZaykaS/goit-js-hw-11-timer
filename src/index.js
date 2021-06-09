@@ -15,6 +15,9 @@ import timerTpl from './templates/timer.hbs';
             document.body.insertAdjacentHTML('afterbegin', timerMarkup);
             const divTimerEl = document.querySelector('.timer');
             divTimerEl.id = this.selector;
+            const titleEl = `<h2>Дата окончания таймера: ${this.targetDate.getDate()}.${this.targetDate.getMonth() + 1}.${this.targetDate.getFullYear()}</h2>`;
+            divTimerEl.insertAdjacentHTML('afterbegin', titleEl)
+
         }
 
         start() {
