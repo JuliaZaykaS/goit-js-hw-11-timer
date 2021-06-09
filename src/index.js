@@ -4,7 +4,7 @@ import timerTpl from './templates/timer.hbs';
 
 
 
-const { daysEl, hoursEl, minutesEl, secondsEl, timerEl } = refs;
+// const { daysEl, hoursEl, minutesEl, secondsEl, timerEl } = refs;
 // console.log(daysEl);
 // console.log(timerEl);
 
@@ -57,6 +57,8 @@ const { daysEl, hoursEl, minutesEl, secondsEl, timerEl } = refs;
         constructor(selector, date) {
             this.selector = selector,
             this.targetDate = new Date(date),
+            this.makeMarkup(),
+
             this.start()
 
         }
@@ -75,7 +77,35 @@ const { daysEl, hoursEl, minutesEl, secondsEl, timerEl } = refs;
 
 
         // }
+
+        makeMarkup() {
+            const timerMarkup = timerTpl();
+            console.log(timerMarkup);
+            document.body.insertAdjacentHTML('afterbegin', timerMarkup);
+            const divTimerEl = document.querySelector('.timer');
+            divTimerEl.id = this.selector;
+            // const refs = {
+            //     daysEl: document.querySelector('[data-value="days"]'),
+            //     hoursEl: document.querySelector('[data-value="hours"]'),
+            //     minutesEl: document.querySelector('[data-value="mins"]'),
+            //     secondsEl: document.querySelector('[data-value="secs"]'),
+            //     timerEl: document.querySelector('#timer-1')
+            // }
+            // console.log(refs);
+            // return refs;
+
+        }
         start() {
+            const refs = {
+                daysEl: document.querySelector('[data-value="days"]'),
+                hoursEl: document.querySelector('[data-value="hours"]'),
+                minutesEl: document.querySelector('[data-value="mins"]'),
+                secondsEl: document.querySelector('[data-value="secs"]'),
+                timerEl: document.querySelector('#timer-1')
+            }
+            // console.log(refs);
+            const { daysEl, hoursEl, minutesEl, secondsEl, timerEl } = refs;
+            // console.log(daysEl);
 
             // const result = [this.getTimeComponents(this.getDate())];
             // console.log(result);
@@ -85,22 +115,23 @@ const { daysEl, hoursEl, minutesEl, secondsEl, timerEl } = refs;
             // console.log(timerMarkup);
             // document.body.insertAdjacentHTML('afterbegin', timerMarkup);
             setInterval(() => {
-            const result = [this.getTimeComponents(this.getDate())];
+            // const result = [this.getTimeComponents(this.getDate())];
+            const result = this.getTimeComponents(this.getDate());
             console.log(result);
 
 
-            const timerMarkup = timerTpl(result);
-            console.log(timerMarkup);
+            // const timerMarkup = timerTpl(result);
+            // console.log(timerMarkup);
             // document.body.insertAdjacentHTML('afterbegin', timerMarkup);
                 // document.body.insertAdjacentElement('afterbegin', timerMarkup);
 
                 // console.log(result);
                 // const timerMarkup = timerTpl(result.days, result.hours, result.mins, result.secs);
                 // document.body.insertAdjacentHTML('afterbegin', timerMarkup);
-                // daysEl.textContent = result.days;
-                // hoursEl.textContent = result.hours;
-                // minutesEl.textContent = result.mins;
-                // secondsEl.textContent = result.secs;
+                daysEl.textContent = result.days;
+                hoursEl.textContent = result.hours;
+                minutesEl.textContent = result.mins;
+                secondsEl.textContent = result.secs;
                 // return result;
 
             }, 1000);
@@ -141,7 +172,7 @@ const { daysEl, hoursEl, minutesEl, secondsEl, timerEl } = refs;
         return { days, hours, mins, secs };
         // return timeToEnd;
         // return [days, hours, mins, secs];
-    }
+        }
         // getMarkUp({ days, hours, mins, secs }) {
         //     const result = this.getTimeComponents(this.getDate());
         //     console.log(result);
@@ -168,12 +199,13 @@ const { daysEl, hoursEl, minutesEl, secondsEl, timerEl } = refs;
 
                 //     }, 1000);
 
-            }
+    }
 
             // }
 
 const timer = new CountdownTimer('#timer-1', 'Jun 17 2021');
-// const timer = new CountdownTimer('#timer-1', 'Jan 30 2022');
+const timer2 = new CountdownTimer('#timer-2', 'Jan 30 2022');
+const timer3 = new CountdownTimer('#timer-2', 'Aug 01 2021');
 // console.log(timer);
 // console.log(timer.targetDate);
 // timer.getMarkUp(timer.targetDate);
